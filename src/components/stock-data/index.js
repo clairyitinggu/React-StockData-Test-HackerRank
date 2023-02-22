@@ -1,20 +1,19 @@
 import React from "react";
 import "./index.css";
 import { useState } from "react";
-import axios from "axios";
 
 export default function StockData() {
   const [date, setDate] = useState("");
   const url = "https://jsonmock.hackerrank.com/api/stocks?date=";
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   async function handleClick(e) {
-    e.preventDefault();
-
-    await axios.get(url + date).then((response) => {
-      console.log(response.data.data[0]);
-      setData(response.data.data[0]);
-    });
+    await fetch(url + date)
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data.data);
+        console.log(data);
+      });
   }
 
   return (
@@ -37,16 +36,27 @@ export default function StockData() {
           Search
         </button>
       </section>
-      <ul
-        className="mt-50 slide-up-fade-in styled"
-        id="stockData"
-        data-testid="stock-data"
-      ></ul>
-      <div
-        className="mt-50 slide-up-fade-in"
-        id="no-result"
-        data-testid="no-result"
-      ></div>
+      {data && data.length !== 0 && (
+        <ul
+          className="mt-50 slide-up-fade-in styled"
+          id="stockData"
+          data-testid="stock-data"
+        >
+          <li>Open: {data[0].open}</li>
+          <li>Close: {data[0].close}</li>
+          <li>High: {data[0].high}</li>
+          <li>Low: {data[0].low}</li>
+        </ul>
+      )}
+      {data && data.length === 0 && (
+        <div
+          className="mt-50 slide-up-fade-in"
+          id="no-result"
+          data-testid="no-result"
+        >
+          No Results Found
+        </div>
+      )}
     </div>
   );
 }
