@@ -1,14 +1,15 @@
-import React from "react";
-import "./App.css";
-import "h8k-components";
-import StockData from "./components/stock-data/index.js";
-import { useState } from "react";
+import React from 'react';
+import './App.css';
+import 'h8k-components';
+import StockData from './components/stock-data/index.js';
+
+const title = "Stock Data";
 
 function App() {
   return (
     <div>
-      <h8k-navbar />
-      <StockData />
+      <h8k-navbar header={title} />
+      <StockData/>
     </div>
   );
 }
