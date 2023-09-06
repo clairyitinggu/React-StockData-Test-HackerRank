@@ -1,5 +1,5 @@
 # React: Stocks Data
-
+> Notice: master branch is the initial code snippet, solution branchis the solution snippet.Feel free to import the main branch to codesandbox to work out your own solution.
 ## Environment 
 
 - React Version: 16.13.1
