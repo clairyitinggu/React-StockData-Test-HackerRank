@@ -6,6 +6,8 @@ import StockData from './components/stock-data/index.js';
 const title = "Stock Data";
 
 function App() {
+ 
+
   return (
     <div>
       <h8k-navbar header={title} />
